@@ -1,0 +1,6 @@
+I just gave you one image, and a pdf that is the exact same but in the format of a pdf with an OCR layer on it.
+Please extract the information from the image, visually, add them in the same same format as the one I give you and add it in the json file "all_elements.json". Once this is done, check how good the code below does at extracting the same info from the pdf with the regex.
+
+If the results are not good, update the regex, and tests them again to make sure that they are not broken. If they are not working for previous pdf's (aka, the extracted text differs from the json) reset the regex and try again.
+
+Make sure to keep all the information regarding the regex and the elements in two files that will remain the same.
