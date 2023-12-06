@@ -75,7 +75,7 @@ def remove_all_ocr(folder_path, margins, region2):
     for pdf_file in pdf_files:
         file_name, file_extension = os.path.splitext(pdf_file)
         if ("cropped" in file_name):
-            output_file = f"croppedOcrCleanedPDF2/{i}_ready{file_extension}"
+            output_file = f"./cleanedPDFForV2/{i}_ready{file_extension}"
             remove_ocr_from_pdf_region(pdf_file, output_file, margins, region2)
             print("Processed :", file_name)
             i += 1
@@ -83,13 +83,13 @@ def remove_all_ocr(folder_path, margins, region2):
             print("ignored the file : ", file_name, " the content was not cropped")
 
 # Specify the directory containing the PDF files
-folder_path = 'splitAndFilteredPDF'  # Replace with the actual path to your PDF directory
+folder_path = './splitAndFilteredPDF'  # Replace with the actual path to your PDF directory
 
 # Crop all PDFs in the folder
 
 # Define the region to clear OCR from, given as percentages of the page's width and height
 # [0% of width, 44.44% of height] to [47.37% of width, 70.37% of height]
 region_to_clear = (6 / 9.5, 0 / 13.5, 9.5 / 9.5, 4.5 / 13.5)
-region_to_clear_2 = (7.2 / 13.2, 4 / 10.5, 9.5 / 9.5, 10 / 10)
+region_to_clear_2 = (7.2 / 13.2, 4 / 10.5, 10/10, 5.5 / 10)
 
 remove_all_ocr(folder_path, region_to_clear, region_to_clear_2)

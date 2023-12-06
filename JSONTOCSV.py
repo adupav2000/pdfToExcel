@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 # Chemin du dossier contenant les fichiers JSON
-dossier_json = './AllResponsesInJson1'
+dossier_json = './AllResponsesInJsonv2'
 
 # Fonction pour aplatir les données JSON
 def aplatir_json(data, parent_key='', sep='_'):
@@ -41,7 +41,7 @@ for fichier in os.listdir(dossier_json):
 df = pd.DataFrame(all_data)
 
 # Uncomment the line below to save the DataFrame to an Excel file
-df.to_excel('informations1.xlsx', index=False)
+df.to_excel('informations final.xlsx', index=False)
 
 # Print the first few rows of the DataFrame for verification
 print("DataFrame preview:\n", df.head())

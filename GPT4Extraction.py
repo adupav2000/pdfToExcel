@@ -8,12 +8,12 @@ client = OpenAI()
 # Your OpenAI API key
 
 # Directory containing PDF files
-pdf_folder = "C:\\Nouveau dossier\\croppedOcrCleanedPDF"
+pdf_folder = "C:\\Nouveau dossier\\cleanedPDFForV2"
 
 # Environment variable for OpenAI API key
 api_key = os.environ.get('OPENAI_API_KEY')
 api_key = "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"
-response_folder = "AllResponsesInJson1"
+response_folder = "AllResponsesInJsonv2"
 
 # Ensure the response folder exists
 os.makedirs(response_folder, exist_ok=True)
@@ -40,15 +40,19 @@ def extract_text_from_pdf(pdf_path):
 
     text = """
         Given the french text you have here, please extract the following information, only using a json format:
-            {
    {
-    "Nom de la holding": "..",
+    "Nom du groupe": "..."
+    "Nom de la holding": "...",
     "Mails": ["...", "..."],
-    "Téléphone du groupe": ["...", "..."],
+    "Téléphone du groupe": ["..."],
+    "Chiffre d'affaire 2022": "...",
+    "Résumé en bref": "",
+    "Nom du DAF" : "..."
     },
   Once you are done with filling this information and gave back this format. Please stop writting. 
   Do not write anything else that this in the response. If there is any other information add it in the list.
-  If you find other informations add them to the json. Information is generally separated by a ":" (Examples: "Actionnaires : Cosmobilis Founders,").
+  If you find other informations add them to the json. It is possible that some of the information is not available, please leave the field empty when it is the case.
+  Only write information you have medium to high confidence in.
 
     """
     for page in doc:
@@ -72,9 +76,9 @@ i = 0
 # Main process
 for filename in os.listdir(pdf_folder):
     if filename.lower().endswith('.pdf'):
-        #i = i + 1
-        #if (i < 30):
-        #    continue
+        i = i + 1
+        if (i < 100):
+            continue
         pdf_path = os.path.join(pdf_folder, filename)
         pdf_text = extract_text_from_pdf(pdf_path)
         
@@ -91,6 +95,3 @@ for filename in os.listdir(pdf_folder):
         content_to_save = response.choices[0].message.content
         # Save the response content in the predefined folder
         save_response_as_json(content_to_save, filename)
-        
-        if (i > 50):
-            break

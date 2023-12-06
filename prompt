@@ -4,3 +4,7 @@ Please extract the information from the image, visually, add them in the same sa
 If the results are not good, update the regex, and tests them again to make sure that they are not broken. If they are not working for previous pdf's (aka, the extracted text differs from the json) reset the regex and try again.
 
 Make sure to keep all the information regarding the regex and the elements in two files that will remain the same.
+
+## Extraction of information using the api
+
+Please write a code that will be able to ask the chatgpt api to extract the information on this pdf and return it in a clean manner in a json format. For each result, please make sure to 
